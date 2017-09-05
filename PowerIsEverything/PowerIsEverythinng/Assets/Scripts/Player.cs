@@ -48,7 +48,7 @@ public class Player : Character
                     Vector3 target = Camera.main.ScreenToWorldPoint(new Vector3(Input.GetTouch(i).position.x, Input.GetTouch(i).position.y, 20));
                     if ((Input.GetTouch(i).position.x < Screen.width / 2)){
                           
-                         rigidbody.AddForce(acceleration*(new Vector3(target.x,target.y,0).normalized));
+                         rigidbody.AddForce(acceleration*(new Vector3(target.x,target.y-transform.position.y,0).normalized));
                     }
                     else
                     {
@@ -61,11 +61,16 @@ public class Player : Character
         //keep player on screen
         if (transform.position.y >= topRight.y && rigidbody.velocity.y > 0)
         {
-           
+            transform.position = new Vector3(transform.position.x, topRight.y, transform.position.z);
         }
         if (transform.position.y <= bottomLeft.y && rigidbody.velocity.y < 0)
         {
-            rigidbody.velocity = Vector3.zero;
+            transform.position = new Vector3(transform.position.x, bottomLeft.y, transform.position.z);
+        }
+
+        if (transform.position.z < bottomLeft.z)
+        {
+            Kill();
         }
 
     }
