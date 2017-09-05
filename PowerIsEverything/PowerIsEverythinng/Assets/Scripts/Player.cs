@@ -99,7 +99,12 @@ public class Player : Character
         GetComponent<Renderer>().material.color = new Color(red / (health / maxHealth), green * (health / maxHealth), blue, 0.5f);
         transform.localScale = (scale * health / maxHealth);
     }
-
+    public override void DepleteHealth(float amount)
+    {
+        base.DepleteHealth(amount);
+        GetComponent<Renderer>().material.color = new Color(red / (health / maxHealth), green * (health / maxHealth), blue, 0.5f);
+        transform.localScale = (scale * health / maxHealth);
+    }
     void OnDestroy()
     {
         if (!isQuitting)
