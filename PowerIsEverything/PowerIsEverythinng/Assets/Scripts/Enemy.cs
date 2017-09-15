@@ -43,6 +43,7 @@ public class Enemy : Character {
             {
                 Rigidbody powerUpClone = Instantiate(powerUp, (transform.position), Quaternion.identity);
                 powerUpClone.velocity = -transform.forward * powerUpSpeed;
+				powerUpClone.GetComponent<PowerUp>().power = maxHealth;
             }
         }
     }

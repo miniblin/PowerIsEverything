@@ -94,14 +94,17 @@ public class Player : Character
 
     public void IncrementHealth(float power)
     {
-        if((health+=power) > maxHealth)
-        {
-            health = maxHealth;
-        }
+		if ((health + power) > maxHealth) {
+			health = maxHealth;
+		} else {
+			health += power;
+		}
        
         GetComponent<Renderer>().material.color = new Color(red / (health / maxHealth), green * (health / maxHealth), blue, 0.5f);
         transform.localScale = (scale * health / maxHealth);
     }
+
+
     public override void DepleteHealth(float amount)
     {
         base.DepleteHealth(amount);
