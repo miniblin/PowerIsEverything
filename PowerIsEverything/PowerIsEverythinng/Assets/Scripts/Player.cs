@@ -1,5 +1,4 @@
 ﻿
-// STAN IS TESTING SOMETHING !!!!!!!!
 
 using System.Collections;
 using System.Collections.Generic;
