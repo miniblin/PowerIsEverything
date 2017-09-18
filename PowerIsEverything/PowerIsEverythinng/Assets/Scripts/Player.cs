@@ -55,7 +55,7 @@ public class Player : Character
                     else
                     {
                         Fire((target - transform.position).normalized);
-                        transform.LookAt(target);
+                        //transform.LookAt(target);
                     }
               }                  
         }
@@ -77,6 +77,13 @@ public class Player : Character
 
     }
 
+	public void Fire(Vector3 target){
+		Rigidbody bulletClone = Instantiate (bullet, (transform.position + transform.forward), Quaternion.identity);
+		//bulletClone.velocity = bulletSpeed;
+		bulletClone.velocity = new Vector3(0f, 0f, bulletSpeed);
+	}
+
+	/*
     //instantiate bullet, set color, set player size- decreases when firing
     public void Fire(Vector3 target)
     {
@@ -89,7 +96,7 @@ public class Player : Character
         GetComponent<Renderer>().material.color = new Color(red / (health / maxHealth), green * (health / maxHealth), blue, 0.5f);
         transform.localScale = (scale * health / maxHealth);
     }
-  
+  */
 
     public void IncrementHealth(float power)
     {
