@@ -29,7 +29,12 @@ public class EnemySpawner : MonoBehaviour {
 
 			Debug.Log(edgeVector);
 
-            Rigidbody enemyclone = Instantiate(enemy, new Vector3(transform.position.x, Random.Range(-8.0f, 8.0f), edgeVector.z+2f), Quaternion.identity);
+
+			//This is what is causing the enemies to be facing in the wrong direction
+            //Rigidbody enemyclone = Instantiate(enemy, new Vector3(transform.position.x, Random.Range(-8.0f, 8.0f), edgeVector.z+2f), Quaternion.identity);
+			Rigidbody enemyclone = Instantiate(enemy);
+
+			enemyclone.transform.position = new Vector3(transform.position.x, Random.Range(-8.0f, 8.0f), edgeVector.z + 2f);
             //enemyclone.velocity = -transform.forward*5;
             
 
