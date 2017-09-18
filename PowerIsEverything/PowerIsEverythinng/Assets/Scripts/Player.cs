@@ -49,7 +49,7 @@ public class Player : Character
     {
 		shootingTimer += Time.deltaTime;
 
-		Fire (Vector3.zero);
+
 
         for (int i = 0; i < Input.touchCount; ++i)
         {
