@@ -33,18 +33,26 @@ public class Enemy : Character {
         }
     }
    
+	public override void Kill(){
+		Explode ();
+		Destroy (gameObject);
+	}
+
+	void Explode(){
+		Instantiate(explosion, transform.position, Quaternion.identity);
+		if (dropPowerUp)
+		{
+			Rigidbody powerUpClone = Instantiate(powerUp, (transform.position), Quaternion.identity);
+			powerUpClone.velocity = -transform.forward * powerUpSpeed;
+			powerUpClone.GetComponent<PowerUp>().power = maxHealth;
+		}
+	}
 
     void OnDestroy()
     {
         if (!isQuitting)
         {
-            Instantiate(explosion, transform.position, Quaternion.identity);
-            if (dropPowerUp)
-            {
-                Rigidbody powerUpClone = Instantiate(powerUp, (transform.position), Quaternion.identity);
-                powerUpClone.velocity = -transform.forward * powerUpSpeed;
-				powerUpClone.GetComponent<PowerUp>().power = maxHealth;
-            }
+
         }
     }
 

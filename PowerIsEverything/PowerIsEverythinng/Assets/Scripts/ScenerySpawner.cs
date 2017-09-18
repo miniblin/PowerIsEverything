@@ -7,12 +7,12 @@ public class ScenerySpawner : MonoBehaviour {
 	public float buildingTimer;
 	private float buildingDeltaTime;
 
-	public Rigidbody building1;
-	public Rigidbody building2;
-	public Rigidbody building3;
-	public Rigidbody building4;
+	public Transform building1;
+	public Transform building2;
+	public Transform building3;
+	public Transform building4;
 
-	public Transform buildingCluster;
+	//public Transform buildingCluster;
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +24,24 @@ public class ScenerySpawner : MonoBehaviour {
 		buildingDeltaTime += Time.deltaTime;
 		if (buildingDeltaTime >= buildingTimer) {
 			buildingDeltaTime = 0;
-			//int number = Random.Range (1, 4);
-			Instantiate(buildingCluster);
+
+
+			switch (Random.Range(1, 4)) {
+			case 1:
+				Instantiate (building1);
+				break;
+			case 2:
+				Instantiate (building2);
+				break;
+			case 3:
+				Instantiate (building3);
+				break;
+			case 4:
+				Instantiate (building4);
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }
