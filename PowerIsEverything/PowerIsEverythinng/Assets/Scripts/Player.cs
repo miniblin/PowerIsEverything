@@ -13,7 +13,10 @@ public class Player : Character
     public float acceleration;
     public float maxVelocity;
     public float bulletSpeed;  
-    
+
+	public float shootingTime;
+	private float shootingTimer;
+
     //pllayer color
     float red;
     float green;
@@ -44,6 +47,10 @@ public class Player : Character
    
     void Update()
     {
+		shootingTimer += Time.deltaTime;
+
+		Fire (Vector3.zero);
+
         for (int i = 0; i < Input.touchCount; ++i)
         {
             if (Input.GetTouch(i).phase != TouchPhase.Ended&& Input.GetTouch(i).phase != TouchPhase.Canceled) {
@@ -78,9 +85,12 @@ public class Player : Character
     }
 
 	public void Fire(Vector3 target){
-		Rigidbody bulletClone = Instantiate (bullet, (transform.position + transform.forward), Quaternion.identity);
-		//bulletClone.velocity = bulletSpeed;
-		bulletClone.velocity = new Vector3(0f, 0f, bulletSpeed);
+		if (shootingTimer >= shootingTime) {
+			shootingTimer = 0;
+			Rigidbody bulletClone = Instantiate (bullet, (transform.position + transform.forward), Quaternion.identity);
+			//bulletClone.velocity = bulletSpeed;
+			bulletClone.velocity = new Vector3 (0f, 0f, bulletSpeed);
+		}
 	}
 
 	/*
